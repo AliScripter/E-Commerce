@@ -83,3 +83,10 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+.carousel-indicators li {
+  color: transparent;
+  margin: 0 18px !important;
+}
+</style>

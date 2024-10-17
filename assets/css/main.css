@@ -19,6 +19,10 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  text-align: center;
+}
+
 .bi::before,
 [class^='bi-']::before,
 [class*=' bi-']::before {
@@ -482,6 +486,21 @@ a:focus {
   background-color: #222831;
   color: #ffffff;
 }
+.food_section .filters_menu li.is-active a.is-active {
+  background-color: #222831;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 12px;
+
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.food_section .filters_menu li a {
+  color: #222831;
+}
 
 .food_section .box {
   position: relative;
@@ -505,6 +524,7 @@ a:focus {
   transition: all 0.2s;
   width: 100%;
   height: 100%;
+  object-fit: cover !important;
 }
 
 .food_section .box .detail-box {

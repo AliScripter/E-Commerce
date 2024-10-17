@@ -1,7 +1,7 @@
 <template>
   <section class="card-area layout_padding">
     <div class="container">
-      <div class="row gy-5">
+      <div class="row gy-5 justify-content-center">
         <div class="col-md-4 col-sm-6 col-xs-6">
           <div class="card text-center">
             <div class="card-body">
@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-6">
+        <div class="col-md-4 col-sm-6 col-xs-6 flex-grow-1">
           <div class="card text-center">
             <div class="card-body">
               <div class="card-icon-wrapper">
