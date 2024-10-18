@@ -1,0 +1,1 @@
+[{"id":"1729250602046","desc":"test","value":"const world = '🌍';\nlet dream = 'Change the world';\nwhile (dream) {\n  console.log(`Make your dreams reality & change ${world}`);\n  dream = keepGoing(dream);\n}\n\n\n\n","position":{"line":5,"character":1}}]

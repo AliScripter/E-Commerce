@@ -1332,3 +1332,8 @@ a:focus {
     width: 50%;
   }
 }
+
+/* For vue toastification */
+.Vue-Toastification__toast-body {
+  font-family: 'Vazir', sans-serif;
+}
