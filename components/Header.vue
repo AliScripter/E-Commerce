@@ -2,9 +2,9 @@
   <header class="header_section bg-black">
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand" href="index.html">
+        <nuxtLink to="/" class="navbar-brand">
           <span> webprog.io </span>
-        </a>
+        </nuxtLink>
 
         <button
           class="navbar-toggler"
@@ -20,17 +20,27 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">صفحه اصلی</a>
+            <li class="nav-item" :class="{ active: $route.path === '/' }">
+              <nuxtLink class="nav-link" to="/">صفحه اصلی</nuxtLink>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="menu.html">منو</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">درباره ما</a>
+              <nuxtLink
+                class="nav-link"
+                :class="{ active: $route.path === '/about-us' }"
+                to="/about-us"
+                >درباره ما</nuxtLink
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">تماس باما</a>
+              <nuxtLink
+                class="nav-link"
+                :class="{ active: $route.path === '/contact-us' }"
+                to="/contact-us"
+                >تماس باما</nuxtLink
+              >
             </li>
           </ul>
           <div class="user_option">
@@ -49,3 +59,9 @@
     </div>
   </header>
 </template>
+
+<style scoped>
+.active {
+  color: #ffbe33 !important;
+}
+</style>
