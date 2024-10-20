@@ -24,7 +24,12 @@
               <nuxtLink class="nav-link" to="/">صفحه اصلی</nuxtLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="menu.html">منو</a>
+              <NuxtLink
+                class="nav-link"
+                :class="{ active: $route.path === '/menu' }"
+                to="/menu"
+                >منو</NuxtLink
+              >
             </li>
             <li class="nav-item">
               <nuxtLink
