@@ -8,23 +8,32 @@
             <label class="form-label">جستجو</label>
             <div class="input-group mb-3">
               <input
+                v-model.trim="search"
+                @keydown.enter="search !== '' && filterFn({ search })"
                 type="text"
                 class="form-control"
                 placeholder="نام محصول ..."
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
               />
-              <a href="#" class="input-group-text" id="basic-addon2">
+              <button
+                @click="search !== '' && filterFn({ search })"
+                class="input-group-text"
+                id="basic-addon2"
+              >
                 <i class="bi bi-search"></i>
-              </a>
+              </button>
             </div>
           </div>
           <hr />
+
+          <!-- categories -->
           <div class="filter-list">
             <div class="form-label">دسته بندی</div>
             <ul>
               <li
                 v-for="category in categories.data"
+                @click="filterFn({ category: category.id })"
                 :key="category.id"
                 class="my-2 cursor-pointer"
               >
@@ -32,7 +41,10 @@
               </li>
             </ul>
           </div>
+
           <hr />
+
+          <!-- sort -->
           <div>
             <label class="form-label">مرتب سازی</label>
             <div class="form-check my-2">
@@ -99,43 +111,52 @@
 
         <!-- items coulmn -->
         <div class="col-sm-12 col-lg-9">
-          <div class="row gx-3">
-            <div class="col-sm-6 col-lg-4">
-              <div class="box">
-                <div>
-                  <div class="img-box">
-                    <img src="../assets/images/b1.jpg" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <h5>لورم ایپسوم متن</h5>
-                    <p>
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                      و با استفاده از طراحان گرافیک است.
-                    </p>
-                    <div class="options">
-                      <h6>
-                        <del>45,000</del>
-                        34,000
-                        <span>تومان</span>
-                      </h6>
-                      <a href="">
-                        <i class="bi bi-cart-fill text-white fs-5"></i>
-                      </a>
-                    </div>
-                  </div>
+          <!-- loading -->
+          <div
+            v-if="pending"
+            class="d-flex justify-content-center align-items-center mt-2"
+          >
+            <div class="spinner-border"></div>
+          </div>
+
+          <!-- show products -->
+          <template v-else>
+            <div
+              v-if="data.data.products.length == 0"
+              class="d-flex justify-content-center align-items-center h-100"
+            >
+              <h5>هیچ محصولی یافت نشد !</h5>
+            </div>
+
+            <div v-else>
+              <div class="row g-3">
+                <div
+                  v-for="product in data.data.products"
+                  :key="product.id"
+                  class="col-sm-6 col-lg-4"
+                >
+                  <Product :product="product" />
                 </div>
               </div>
             </div>
-          </div>
+          </template>
 
           <!-- Pagination  -->
           <nav class="d-flex justify-content-center mt-5">
             <ul class="pagination">
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
+              <li
+                v-for="(link, index) in data.data.meta.links.slice(1, -1)"
+                :key="index"
+                class="page-item"
+                :class="{ active: link.active }"
+              >
+                <button
+                  @click="filterFn({ page: link.label })"
+                  class="page-link"
+                >
+                  {{ link.label }}
+                </button>
               </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
             </ul>
           </nav>
         </div>
@@ -148,6 +169,27 @@
 const {
   public: { apiBase },
 } = useRuntimeConfig();
+const router = useRouter();
+const route = useRoute();
+
+const query = ref({});
+const search = ref(``);
 
 const { data: categories } = await useFetch(`${apiBase}/categories`);
-</script>7
+
+query.value = route.query;
+const { data, refresh, pending } = await useFetch(() => `${apiBase}/menu`, {
+  query,
+});
+
+function filterFn(param) {
+  query.value = { ...route.query, ...param };
+
+  router.push({
+    path: `/menu`,
+    query: query.value,
+  });
+
+  refresh();
+}
+</script>

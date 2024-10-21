@@ -69,4 +69,13 @@
 .active {
   color: #ffbe33 !important;
 }
+
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(3px) !important;
+}
 </style>
