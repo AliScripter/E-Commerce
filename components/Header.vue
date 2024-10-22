@@ -78,4 +78,9 @@ header {
   background: rgba(0, 0, 0, 0.6) !important;
   backdrop-filter: blur(3px) !important;
 }
+
+span.navbar-toggler-icon {
+  background: white !important;
+  color: white !important;
+}
 </style>

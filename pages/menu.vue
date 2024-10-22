@@ -9,6 +9,7 @@
             <div class="input-group mb-3">
               <input
                 v-model.trim="search"
+                @input="checkSearchBar"
                 @keydown.enter="search !== '' && filterFn({ search })"
                 type="text"
                 class="form-control"
@@ -36,6 +37,11 @@
                 @click="filterFn({ category: category.id })"
                 :key="category.id"
                 class="my-2 cursor-pointer"
+                :class="{
+                  'filter-list-active':
+                    route.query.hasOwnProperty('category') &&
+                    route.query.category == category.id,
+                }"
               >
                 {{ category.name }}
               </li>
@@ -47,42 +53,37 @@
           <!-- sort -->
           <div>
             <label class="form-label">مرتب سازی</label>
+
             <div class="form-check my-2">
               <input
+                @click="filterFn({ sortBy: 'sale' })"
+                :checked="
+                  route.query.hasOwnProperty('sortBy') &&
+                  route.query.sortBy == 'sale'
+                "
                 class="form-check-input"
                 type="radio"
                 name="flexRadioDefault"
-                id="flexRadioDefault1"
+                id="flexRadioDefault4"
               />
               <label
                 class="form-check-label cursor-pointer"
-                for="flexRadioDefault1"
+                for="flexRadioDefault4"
               >
-                بیشترین قیمت
+                با تخفیف
               </label>
             </div>
             <div class="form-check my-2">
               <input
-                class="form-check-input"
-                type="radio"
-                name="flexRadioDefault"
-                id="flexRadioDefault2"
-                checked
-              />
-              <label
-                class="form-check-label cursor-pointer"
-                for="flexRadioDefault2"
-              >
-                کمترین قیمت
-              </label>
-            </div>
-            <div class="form-check my-2">
-              <input
+                @click="filterFn({ sortBy: 'bestseller' })"
+                :checked="
+                  route.query.hasOwnProperty('sortBy') &&
+                  route.query.sortBy == 'bestseller'
+                "
                 class="form-check-input"
                 type="radio"
                 name="flexRadioDefault"
                 id="flexRadioDefault3"
-                checked
               />
               <label
                 class="form-check-label cursor-pointer"
@@ -93,17 +94,40 @@
             </div>
             <div class="form-check my-2">
               <input
+                @click="filterFn({ sortBy: 'min' })"
+                :checked="
+                  route.query.hasOwnProperty('sortBy') &&
+                  route.query.sortBy == 'min'
+                "
                 class="form-check-input"
                 type="radio"
                 name="flexRadioDefault"
-                id="flexRadioDefault4"
-                checked
+                id="flexRadioDefault2"
               />
               <label
                 class="form-check-label cursor-pointer"
-                for="flexRadioDefault4"
+                for="flexRadioDefault2"
               >
-                با تخفیف
+                کمترین قیمت
+              </label>
+            </div>
+            <div class="form-check my-2">
+              <input
+                @click="filterFn({ sortBy: 'max' })"
+                :checked="
+                  route.query.hasOwnProperty('sortBy') &&
+                  route.query.sortBy == 'max'
+                "
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+              />
+              <label
+                class="form-check-label cursor-pointer"
+                for="flexRadioDefault1"
+              >
+                بیشترین قیمت
               </label>
             </div>
           </div>
@@ -182,8 +206,19 @@ const { data, refresh, pending } = await useFetch(() => `${apiBase}/menu`, {
   query,
 });
 
+watch(route, () => {
+  if (Object.keys(route.query) == 0) {
+    query.value = {};
+    refresh();
+  }
+});
+
 function filterFn(param) {
   query.value = { ...route.query, ...param };
+
+  if (!param.hasOwnProperty(`page`)) {
+    delete query.value.page;
+  }
 
   router.push({
     path: `/menu`,
@@ -192,4 +227,25 @@ function filterFn(param) {
 
   refresh();
 }
+
+function checkSearchBar(element) {
+  if (element.target.value === ``) {
+    if (query.value.hasOwnProperty(`search`)) {
+      delete query.value.search;
+    }
+
+    router.push({
+      path: `/menu`,
+      query: query.value,
+    });
+  }
+
+  console.log(element);
+}
 </script>
+
+<style scoped>
+li {
+  width: fit-content;
+}
+</style>

@@ -1,24 +1,24 @@
 @font-face {
-  font-family: "Vazir";
+  font-family: 'Vazir';
   src: url(../fonts/Vazir.eot);
   /* IE9 Compat Modes */
-  src: url(../fonts/Vazir.eot) format("embedded-opentype"),
-    url(../fonts/Vazir.woff2) format("woff2"),
-    url(../fonts/Vazir.woff) format("woff"),
-    url(../fonts/Vazir.ttf) format("truetype");
+  src: url(../fonts/Vazir.eot) format('embedded-opentype'),
+    url(../fonts/Vazir.woff2) format('woff2'),
+    url(../fonts/Vazir.woff) format('woff'),
+    url(../fonts/Vazir.ttf) format('truetype');
   /* Safari, Android, iOS */
 }
 
 body {
-  font-family: "Vazir", Arial, Helvetica, sans-serif !important;
+  font-family: 'Vazir', Arial, Helvetica, sans-serif !important;
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
 }
 
 .bi::before,
-[class^="bi-"]::before,
-[class*=" bi-"]::before {
+[class^='bi-']::before,
+[class*=' bi-']::before {
   vertical-align: -0.3em !important;
 }
 .layout_padding {
@@ -47,7 +47,7 @@ body {
 
 h1,
 h2 {
-  font-family: "Vazir", Arial, Helvetica, sans-serif !important;
+  font-family: 'Vazir', Arial, Helvetica, sans-serif !important;
 }
 
 p {
@@ -168,7 +168,7 @@ a:focus {
 }
 
 .navbar-brand {
-  font-family: "Vazir", Arial, Helvetica, sans-serif !important;
+  font-family: 'Vazir', Arial, Helvetica, sans-serif !important;
 }
 
 .navbar-brand span {
@@ -310,7 +310,7 @@ a:focus {
 
 .custom_nav-container .navbar-toggler span::before,
 .custom_nav-container .navbar-toggler span::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   height: 100%;
@@ -326,18 +326,18 @@ a:focus {
   top: 10px;
 }
 
-.custom_nav-container .navbar-toggler[aria-expanded="true"] {
+.custom_nav-container .navbar-toggler[aria-expanded='true'] {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
 }
 
-.custom_nav-container .navbar-toggler[aria-expanded="true"] span {
+.custom_nav-container .navbar-toggler[aria-expanded='true'] span {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
-.custom_nav-container .navbar-toggler[aria-expanded="true"] span::before,
-.custom_nav-container .navbar-toggler[aria-expanded="true"] span::after {
+.custom_nav-container .navbar-toggler[aria-expanded='true'] span::before,
+.custom_nav-container .navbar-toggler[aria-expanded='true'] span::after {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
   top: 0;
@@ -758,7 +758,7 @@ a:focus {
 }
 
 .client_section .box .img-box::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 0;
@@ -897,7 +897,7 @@ a:focus {
 .footer_section .footer-logo {
   font-weight: 600;
   margin-bottom: 20px;
-  font-family: "Vazir", Arial, Helvetica, sans-serif !important;
+  font-family: 'Vazir', Arial, Helvetica, sans-serif !important;
 }
 
 .footer_section p {
