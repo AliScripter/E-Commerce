@@ -3,7 +3,11 @@
     <div class="bg-box">
       <img src="/images/hero-bg.jpg" alt="hero-bg" />
     </div>
-    <div id="customCarousel1" class="carousel slide" data-bs-ride="carousel">
+    <div
+      id="customCarousel1"
+      class="carousel slide mt-5"
+      data-bs-ride="carousel"
+    >
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="container">
@@ -88,5 +92,9 @@
 .carousel-indicators li {
   color: transparent;
   margin: 0 18px !important;
+}
+
+.slider_section {
+  height: 100dvh;
 }
 </style>

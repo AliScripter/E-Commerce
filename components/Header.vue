@@ -57,7 +57,7 @@
                 3
               </span>
             </a>
-            <a href="login.html" class="btn-auth"> ورود </a>
+            <NuxtLink to="/login" class="btn-auth"> ورود </NuxtLink>
           </div>
         </div>
       </nav>
@@ -72,6 +72,7 @@
 
 header {
   position: fixed;
+  top: 0 !important;
   width: 100%;
   z-index: 100;
 

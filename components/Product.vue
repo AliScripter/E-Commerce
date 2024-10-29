@@ -6,7 +6,7 @@
         <img
           src="/images/preloader.png"
           v-img="props.product.primary_image"
-          alt=""
+          :alt="props.product.name"
         />
       </div>
       <div class="detail-box">
