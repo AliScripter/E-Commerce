@@ -14,6 +14,7 @@
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          id="menuBtn"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,13 +58,22 @@
                 3
               </span>
             </a>
-            <NuxtLink to="/login" class="btn-auth"> ورود </NuxtLink>
+
+            <NuxtLink v-if="authUser" to="/profile" class="btn-auth">
+              پروفایل
+            </NuxtLink>
+
+            <NuxtLink v-else to="/login" class="btn-auth"> ورود </NuxtLink>
           </div>
         </div>
       </nav>
     </div>
   </header>
 </template>
+
+<script setup>
+const { authUser } = useAuth();
+</script>
 
 <style scoped>
 .active {
@@ -75,6 +85,8 @@ header {
   top: 0 !important;
   width: 100%;
   z-index: 100;
+  display: flex;
+  align-items: center;
 
   background: rgba(0, 0, 0, 0.6) !important;
   backdrop-filter: blur(3px) !important;
