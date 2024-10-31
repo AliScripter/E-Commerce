@@ -10,19 +10,21 @@
     </div>
     <!-- form -->
     <div class="form_container">
-      <form @submit.prevent="checkOTP">
-        <div class="mb-3">
-          <label for="otpCode" class="form-label"> کد ورود </label>
-          <input
-            v-model="otpCode"
-            type="text"
-            class="form-control"
-            id="otpCode"
-            maxlength="6"
-          />
-        </div>
+      <div class="mb-3">
+        <label for="otpCode" class="form-label"> کد ورود </label>
+        <input
+          v-model="otpCode"
+          type="text"
+          class="form-control"
+          id="otpCode"
+          maxlength="6"
+        />
+      </div>
+
+      <div class="d-flex align-items-center justify-content-between">
         <button
-          @keydown.enter="checkOTP"
+          @click="checkOTP"
+          :disabled="loading"
           type="submit"
           class="btn btn-primary btn-auth d-flex align-items-center"
         >
@@ -32,7 +34,9 @@
             class="spinner-border spinner-border-sm ms-2"
           ></div>
         </button>
-      </form>
+
+        <ResendOTP @resend-otp-errors="err => (errors = err)" />
+      </div>
     </div>
   </div>
 </template>
